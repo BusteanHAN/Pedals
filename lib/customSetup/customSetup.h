@@ -137,11 +137,11 @@ void serialHandler()
         break;
         case 'l':
         Serial.print("Lower limit: ");
-        Serial.println(readIntFromEEPROM(8));
+        Serial.println(readDoubleFromEEPROM(8));
         break;
         case 'h':
         Serial.print("Upper limit: ");
-        Serial.println(readIntFromEEPROM(12));
+        Serial.println(readDoubleFromEEPROM(12));
         break;
         default:
         break;

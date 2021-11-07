@@ -42,10 +42,9 @@ void loop()
 {
   if (Serial && helpFlag == false)
   {
-    serialHelp();
-    helpFlag = true;
+    for (static bool first = true; first; first = false)
+      serialHelp();
   }
-  if(!Serial) helpFlag = false;
   if (Serial.available())
   {
     serialHandler();

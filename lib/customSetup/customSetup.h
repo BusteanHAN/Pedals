@@ -86,34 +86,66 @@ void serialHandler()
     {
     case 'c':
     // Serial.println("clutch");
-      if (message.charAt(2) == '0')
+      switch(message.charAt(2)){
+        case '0':
         pedalDisplay &= 0b11111110;
-      else
+        break;
+        case '1':
         pedalDisplay |= 0b00000001;
+        break;
+        case 'l':
+        Serial.print("Lower limit:");
+        Serial.println(readIntFromEEPROM(0));
+        break;
+        case 'h':
+        Serial.print("Upper limit:");
+        Serial.println(readIntFromEEPROM(2));
+        break;
+        default:
+        break;
+      }
       break;
     case 'g':
     // Serial.println("gas");
-      if (message.charAt(2) == '0')
+    switch(message.charAt(2)){
+        case '0':
         pedalDisplay &= 0b11111101;
-      else
-        pedalDisplay |= 0b00000010;
-      break;
+        break;
+        case '1':
+        pedalDisplay |= 0b00000010;        
+        break;
+        case 'l':
+        Serial.print("Lower limit:");
+        Serial.println(readIntFromEEPROM(4));
+        break;
+        case 'h':
+        Serial.print("Upper limit:");
+        Serial.println(readIntFromEEPROM(6));
+        break;
+        default:
+        break;
+      }
       break;
     case 'b':
     // Serial.println("brake");
-      if (message.charAt(2) == '0')
+    switch(message.charAt(2)){
+        case '0':
         pedalDisplay &= 0b11111011;
-      else
+        break;
+        case '1':
         pedalDisplay |= 0b00000100;
-      break;
-      break;
-    case 'h':
-    // Serial.println("handbrake");
-      if (message.charAt(2) == '0')
-        pedalDisplay &= 0b11110111;
-      else
-        pedalDisplay |= 0b00001000;
-      break;
+        break;
+        case 'l':
+        Serial.print("Lower limit:");
+        Serial.println(readIntFromEEPROM(0));
+        break;
+        case 'h':
+        Serial.print("Upper limit:");
+        Serial.println(readIntFromEEPROM(2));
+        break;
+        default:
+        break;
+      }
       break;
     default:
       Serial.println("Invalid input");

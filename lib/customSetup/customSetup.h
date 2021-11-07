@@ -50,10 +50,10 @@ void pinModes()
 
 void serialHelp()
 {
-  Serial.println("Format: <Pedal><Value type><Value> e.g. cl255 (clutch low 255) ");
-  Serial.println("Available options - Pedal: c, b, g, d");
-  Serial.println("                  - Value type: l, h");
-  Serial.println("Available options - Display: c ,b ,g");
+  Serial.println("Display - c,g,b; 0,1,l,h ");
+  Serial.println("e.g. dc1 = display clutch true; dbl = display brake lower limit");
+  Serial.println("Set - c,g,b; value");
+  Serial.println("e.g. cl283 = clutch lower limit 283");
 }
 
 void serialHandler()

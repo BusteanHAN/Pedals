@@ -16,7 +16,6 @@ int gas[6];
 int clutch[6];
 double brake[6];
 int handbrake, previoushandbrake, handbraketh = 1;
-bool helpFlag = false;
 
 HX711 brakePedal;
 
@@ -40,7 +39,7 @@ void setup() {
 
 void loop()
 {
-  if (Serial && helpFlag == false)
+  if (Serial)
   {
     for (static bool first = true; first; first = false)
       serialHelp();

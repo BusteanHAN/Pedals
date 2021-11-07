@@ -94,11 +94,11 @@ void serialHandler()
         pedalDisplay |= 0b00000001;
         break;
         case 'l':
-        Serial.print("Lower limit:");
+        Serial.print("Lower limit: ");
         Serial.println(readIntFromEEPROM(0));
         break;
         case 'h':
-        Serial.print("Upper limit:");
+        Serial.print("Upper limit: ");
         Serial.println(readIntFromEEPROM(2));
         break;
         default:
@@ -115,11 +115,11 @@ void serialHandler()
         pedalDisplay |= 0b00000010;        
         break;
         case 'l':
-        Serial.print("Lower limit:");
+        Serial.print("Lower limit: ");
         Serial.println(readIntFromEEPROM(4));
         break;
         case 'h':
-        Serial.print("Upper limit:");
+        Serial.print("Upper limit: ");
         Serial.println(readIntFromEEPROM(6));
         break;
         default:
@@ -136,11 +136,11 @@ void serialHandler()
         pedalDisplay |= 0b00000100;
         break;
         case 'l':
-        Serial.print("Lower limit:");
+        Serial.print("Lower limit: ");
         Serial.println(readIntFromEEPROM(8));
         break;
         case 'h':
-        Serial.print("Upper limit:");
+        Serial.print("Upper limit: ");
         Serial.println(readIntFromEEPROM(12));
         break;
         default:

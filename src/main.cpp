@@ -76,6 +76,7 @@ void loop()
   setNSend(&Joystick, clutch[0], brake[0], gas[0], handbrake);
 }
 
+
 void displayStuff()
 {
   byte serialSettings = EEPROM.read(16);

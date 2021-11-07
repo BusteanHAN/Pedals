@@ -69,6 +69,9 @@ void serialHandler()
   uint8_t addr = 0;
   switch (message.charAt(0))
   {
+  case 'r':
+    loadDefaults();
+  break;
   case 'c':
     addr = ('l' == message.charAt(1)) ? 0 : 2;
     writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));

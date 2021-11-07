@@ -50,9 +50,9 @@ void pinModes()
 
 void serialHelp()
 {
-  Serial.println("Display - c,g,b; 0,1,l,h ");
+  Serial.println("Display - d; c,g,b; 0,1,l,h ");
   Serial.println("e.g. dc1 = display clutch true; dbl = display brake lower limit");
-  Serial.println("Set - c,g,b; value");
+  Serial.println("Set - c,g,b; l,h; value");
   Serial.println("e.g. cl283 = clutch lower limit 283");
 }
 

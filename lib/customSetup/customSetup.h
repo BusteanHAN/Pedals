@@ -153,7 +153,7 @@ void serialHandler()
     }
     break;
   default:
-    Serial.println("Invalid type");
+    Serial.println("Invalid input");
     break;
   }
   // Serial.println(readDoubleFromEEPROM(12),10);

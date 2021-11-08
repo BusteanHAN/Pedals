@@ -118,11 +118,11 @@ void serialHandler()
         pedalDisplay |= 0b00000010;        
         break;
         case 'l':
-        Serial.print("Lower gas limit: ");
+        Serial.print("Lower gas limit:    ");
         Serial.println(readIntFromEEPROM(4));
         break;
         case 'h':
-        Serial.print("Upper gas limit: ");
+        Serial.print("Upper gas limit:    ");
         Serial.println(readIntFromEEPROM(6));
         break;
         default:
@@ -139,11 +139,11 @@ void serialHandler()
         pedalDisplay |= 0b00000100;
         break;
         case 'l':
-        Serial.print("Lower brake limit: ");
+        Serial.print("Lower brake limit:  ");
         Serial.println(readDoubleFromEEPROM(8));
         break;
         case 'h':
-        Serial.print("Upper brake limit: ");
+        Serial.print("Upper brake limit:  ");
         Serial.println(readDoubleFromEEPROM(12));
         break;
         default:

@@ -30,6 +30,7 @@ void setup() {
   brake[3] = 1; brake[4] = readDoubleFromEEPROM(8); brake[5] = readDoubleFromEEPROM(12);
 
   Serial.begin(115200);
+  Serial.setTimeout(5);
   Serial1.begin(9600);
   brakePedal.begin(A1, A0);
   joySetup(&Joystick);

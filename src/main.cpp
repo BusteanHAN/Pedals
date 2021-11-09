@@ -29,7 +29,7 @@ void setup() {
   gas[3] = 1; gas[4] = readIntFromEEPROM(4); gas[5] = readIntFromEEPROM(6);
   brake[3] = 1; brake[4] = readDoubleFromEEPROM(8); brake[5] = readDoubleFromEEPROM(12);
 
-  Serial.begin(115200);
+  Serial.begin(2000000);
   Serial.setTimeout(5);
   Serial1.begin(9600);
   brakePedal.begin(A1, A0);

@@ -160,10 +160,17 @@ void serialHandler()
       }
       break;
     case 'a':
-      if (message.charAt(2) == '1')
+      switch (message.charAt(2))
+      {
+      case '0':
         pedalDisplay |= 0b00001000;
-      else
+        break;
+      case '1':
         pedalDisplay &= 0b11110111;
+        break;
+      default:
+        break;
+      }
       break;
     default:
       Serial.println("Invalid input");

@@ -78,14 +78,17 @@ void serialHandler()
   case 'c':
     addr = ('l' == message.charAt(1)) ? 0 : 2;
     writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    Serial.println("Set!");
     break;
   case 'g':
     addr = ('l' == message.charAt(1)) ? 4 : 6;
     writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    Serial.println("Set!");
     break;
   case 'b':
     addr = ('l' == message.charAt(1)) ? 8 : 12;
     writeDoubleIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    Serial.println("Set!");
     break;
   case 'd':
     switch (message.charAt(1))

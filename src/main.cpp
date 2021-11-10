@@ -100,11 +100,11 @@ void displayStuff()
     if ((serialSettings & 0b00001000) > 0)
     {
       Serial.print(clutch[1]);  Serial.print(" ");
-      Serial.print(clutch[0]);  Serial.print(" ");
+      // Serial.print(clutch[0]);  Serial.print(" ");
       Serial.print(gas[1]);  Serial.print(" ");
-      Serial.print(gas[0]);  Serial.print(" ");
-      Serial.print(brake[1]); Serial.print(" ");
-      Serial.println(brake[0]);
+      // Serial.print(gas[0]);  Serial.print(" ");
+      Serial.println(brake[1]); //Serial.print(" ");
+      // Serial.println(brake[0]);
     }
   }
 }

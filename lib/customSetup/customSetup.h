@@ -60,7 +60,7 @@ void serialHandler()
 {
   byte pedalDisplay = EEPROM.read(16);
   String message, temp;
-  char * pEnd;
+  char *pEnd;
   static char value[7];
   message = Serial.readString();
   temp = message.substring(2);
@@ -69,9 +69,12 @@ void serialHandler()
   uint8_t addr = 0;
   switch (message.charAt(0))
   {
+  case 'h':
+    serialHelp();
+    break;
   case 'r':
     loadDefaults();
-  break;
+    break;
   case 'c':
     addr = ('l' == message.charAt(1)) ? 0 : 2;
     writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));
@@ -88,65 +91,68 @@ void serialHandler()
     switch (message.charAt(1))
     {
     case 'c':
-    // Serial.println("clutch");
-      switch(message.charAt(2)){
-        case '0':
+      // Serial.println("clutch");
+      switch (message.charAt(2))
+      {
+      case '0':
         pedalDisplay &= 0b11111110;
         break;
-        case '1':
+      case '1':
         pedalDisplay |= 0b00000001;
         break;
-        case 'l':
+      case 'l':
         Serial.print("Lower clutch limit: ");
         Serial.println(readIntFromEEPROM(0));
         break;
-        case 'h':
+      case 'h':
         Serial.print("Upper clutch limit: ");
         Serial.println(readIntFromEEPROM(2));
         break;
-        default:
+      default:
         break;
       }
       break;
     case 'g':
-    // Serial.println("gas");
-    switch(message.charAt(2)){
-        case '0':
+      // Serial.println("gas");
+      switch (message.charAt(2))
+      {
+      case '0':
         pedalDisplay &= 0b11111101;
         break;
-        case '1':
-        pedalDisplay |= 0b00000010;        
+      case '1':
+        pedalDisplay |= 0b00000010;
         break;
-        case 'l':
+      case 'l':
         Serial.print("Lower gas limit: ");
         Serial.println(readIntFromEEPROM(4));
         break;
-        case 'h':
+      case 'h':
         Serial.print("Upper gas limit: ");
         Serial.println(readIntFromEEPROM(6));
         break;
-        default:
+      default:
         break;
       }
       break;
     case 'b':
-    // Serial.println("brake");
-    switch(message.charAt(2)){
-        case '0':
+      // Serial.println("brake");
+      switch (message.charAt(2))
+      {
+      case '0':
         pedalDisplay &= 0b11111011;
         break;
-        case '1':
+      case '1':
         pedalDisplay |= 0b00000100;
         break;
-        case 'l':
+      case 'l':
         Serial.print("Lower brake limit: ");
         Serial.println(readDoubleFromEEPROM(8));
         break;
-        case 'h':
+      case 'h':
         Serial.print("Upper brake limit: ");
         Serial.println(readDoubleFromEEPROM(12));
         break;
-        default:
+      default:
         break;
       }
       break;
@@ -162,5 +168,5 @@ void serialHandler()
   // Serial.println(readDoubleFromEEPROM(12),10);
   // Serial.println(strtol(value, &pEnd, 10));
   // Serial.println(pedalDisplay, BIN);
-  EEPROM.write(16,pedalDisplay);
+  EEPROM.write(16, pedalDisplay);
 }

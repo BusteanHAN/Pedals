@@ -40,11 +40,6 @@ void setup() {
 
 void loop()
 {
-  if (Serial)
-  {
-    for (static bool first = true; first; first = false)
-      serialHelp();
-  }
   if (Serial.available())
   {
     serialHandler();

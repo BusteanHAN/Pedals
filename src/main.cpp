@@ -99,8 +99,12 @@ void displayStuff()
     }
     if ((serialSettings & 0x0b00001000) > 0)
     {
-      Serial.print("Handbrake ");
-      Serial.println(handbrake);
+      Serial.print(clutch[1] + " ");
+      Serial.print(clutch[0] + " ");
+      Serial.print(gas[1] + " ");
+      Serial.print(gas[0] + " ");
+      Serial.print(brake[1]); Serial.print(" ");
+      Serial.println(brake[0]);
     }
   }
 }

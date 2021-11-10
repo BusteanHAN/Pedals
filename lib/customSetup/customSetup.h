@@ -163,10 +163,10 @@ void serialHandler()
       switch (message.charAt(2))
       {
       case '0':
-        pedalDisplay |= 0b00001000;
+        pedalDisplay &= 0b11110111;
         break;
       case '1':
-        pedalDisplay &= 0b11110111;
+        pedalDisplay |= 0b00001000;
         break;
       default:
         break;

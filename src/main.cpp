@@ -97,7 +97,7 @@ void displayStuff()
       Serial.print("   ");
       Serial.println(brake[0]);
     }
-    if ((serialSettings & 0x0b00001000) > 0)
+    if ((serialSettings & 0b00001000) > 0)
     {
       Serial.print(clutch[1] + " ");
       Serial.print(clutch[0] + " ");

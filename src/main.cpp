@@ -99,7 +99,7 @@ void displayStuff()
     }
     if ((serialSettings & 0b00001000) > 0)
     {
-      String outMessage = String(clutch[1]) + " " + String(gas[1]) + " " + String(brake[1]);
+      String outMessage = String(clutch[1]) + "|" + String(gas[1]) + "|" + String(brake[1]);
       Serial.println(outMessage);
       serialSettings &= 0b11110111;
       EEPROM.write(16, serialSettings);

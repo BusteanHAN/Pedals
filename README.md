@@ -1,2 +1,2 @@
 # Pedals
-My pedals lmao
+USB HID pedals for simracing purposes

@@ -8,15 +8,20 @@
 #include "../pedalClasses/BSTPedals.h"
 #endif
 
-class SerialHandler
+#ifndef HELPER_H
+#define HELPER_H
+#include "../Helper/helper.h"
+#endif
+
+class SerialHandler_
 {
 public:
-    SerialHandler() {}
-
-    SerialHandler(BSTPedals_ pBSTPedals) : pBSTPedals(&pBSTPedals) {
+    SerialHandler_()
+    {
         Serial.begin(115200);
         Serial.setTimeout(5);
-    }
+        this->BSTPedals = BSTPedals_(CLUTCH_PIN, GAS_PIN, BRAKE_DOUT_PIN, BRAKE_SCK_PIN);
+    };
     void Worker();
     uint8_t readUint8_tFromSerial(byte serialBuffer[]);
     uint16_t readUint16_tFromSerial(byte serialBuffer[]);
@@ -25,5 +30,5 @@ public:
 
 private:
     byte serialBuffer[32];
-    BSTPedals_ *pBSTPedals;
+    BSTPedals_ BSTPedals;
 };

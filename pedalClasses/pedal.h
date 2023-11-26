@@ -8,11 +8,6 @@
 #include <EEPROM.h>
 #endif
 
-#ifndef EEPROMUTILS_H
-#define EEPROMUTILS_H
-#include "EEPROMUtils.h"
-#endif
-
 class Pedal_
 {
 public:

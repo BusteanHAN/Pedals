@@ -16,8 +16,11 @@
 class BrakePedal_ : public Pedal_
 {
 public:
+    BrakePedal_() {};
+    
     BrakePedal_(uint8_t hx711DoutPin, uint8_t hx711SckPin, uint8_t eepromBaseAddress)
     {
+        hx711 = HX711();
         hx711.begin(hx711DoutPin, hx711SckPin);
         setEEPROMBaseAddress(eepromBaseAddress);
         loadFromEEPROM();

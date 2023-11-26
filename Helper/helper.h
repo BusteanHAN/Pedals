@@ -1,8 +1,3 @@
-enum limitType{
-    LIMIT_LOWER,
-    LIMIT_UPPER,
-};
-
 enum pedatType{
     CLUTCH,
     BRAKE,

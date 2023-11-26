@@ -202,7 +202,7 @@ long SerialHandler::readLongFromSerial(byte serialBuffer[])
 
 void SerialHandler::clearEEPROM()
 {
-    for (int i = 0; i < 32; i++)
+    for (int i = 0; i < 1024; i++)
     {
         EEPROM.write(i, 0);
     }

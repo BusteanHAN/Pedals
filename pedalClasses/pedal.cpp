@@ -1,80 +1,80 @@
 #include "pedal.h"
 
-void Pedal::assignPin(uint8_t newPin)
+void Pedal_::assignPin(uint8_t newPin)
 {
     pin = newPin;
 }
 
 
-void Pedal::setUpperLimit(uint16_t newUpperLimit)
+void Pedal_::setUpperLimit(uint16_t newUpperLimit)
 {
     upperLimit = newUpperLimit;
 }
 
-void Pedal::setLowerLimit(uint16_t newLowerLimit)
+void Pedal_::setLowerLimit(uint16_t newLowerLimit)
 {
     lowerLimit = newLowerLimit;
 }
 
 
-void Pedal::setValue(uint16_t newValue)
+void Pedal_::setValue(uint16_t newValue)
 {
     rawValue = newValue;
 }
 
-void Pedal::updatePreviousValue()
+void Pedal_::updatePreviousValue()
 {
     previousRawValue = rawValue;
 }
 
-uint16_t Pedal::getPreviousValue() const
+uint16_t Pedal_::getPreviousValue() const
 {
     return previousRawValue;
 }
 
 
-void Pedal::mapValue()
+void Pedal_::mapValue()
 {
     mappedValue = map(rawValue, lowerLimit, upperLimit, 0, 255);
 }
 
-uint8_t Pedal::getmappedValue() const
+uint8_t Pedal_::getmappedValue() const
 {
     return mappedValue;
 }
 
 
-void Pedal::setEEPROMBaseAddress(uint8_t newEEPROMBaseAddress)
+void Pedal_::setEEPROMBaseAddress(uint8_t newEEPROMBaseAddress)
 {
     eepromBaseAddress = newEEPROMBaseAddress;
 }
 
-uint8_t Pedal::getEEPROMBaseAddress() const
+uint8_t Pedal_::getEEPROMBaseAddress() const
 {
     return eepromBaseAddress;
 }
 
-void Pedal::saveToEEPROM()
+void Pedal_::saveToEEPROM()
 {
     EEPROM.put(eepromBaseAddress, lowerLimit);
     EEPROM.put(eepromBaseAddress + sizeof(lowerLimit), upperLimit);
 }
 
-void Pedal::loadFromEEPROM()
+void Pedal_::loadFromEEPROM()
 {
     EEPROM.get(eepromBaseAddress, lowerLimit);
     EEPROM.get(eepromBaseAddress + sizeof(lowerLimit), upperLimit);
 }
 
-uint8_t Pedal::getLastUsedEEPROMAddress() const
+uint8_t Pedal_::getLastUsedEEPROMAddress() const
 {
     return eepromBaseAddress + sizeof(lowerLimit) + sizeof(upperLimit);
 }
 
 
-void Pedal::Worker()
+void Pedal_::Worker()
 {
-    Pedal::updatePreviousValue();
-    Pedal::setValue(analogRead(pin));
-    Pedal::mapValue();
+    Pedal_::updatePreviousValue();
+    Pedal_::setValue(analogRead(pin));
+    Pedal_::mapValue();
 }

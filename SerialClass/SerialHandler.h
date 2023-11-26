@@ -11,7 +11,9 @@
 class SerialHandler
 {
 public:
-    SerialHandler(BSTPedals pBSTPedals) : pBSTPedals(&pBSTPedals) {
+    SerialHandler() {}
+
+    SerialHandler(BSTPedals_ pBSTPedals) : pBSTPedals(&pBSTPedals) {
         Serial.begin(115200);
         Serial.setTimeout(5);
     }
@@ -23,5 +25,5 @@ public:
 
 private:
     byte serialBuffer[32];
-    BSTPedals *pBSTPedals;
+    BSTPedals_ *pBSTPedals;
 };

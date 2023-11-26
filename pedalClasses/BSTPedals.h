@@ -23,10 +23,10 @@
 #include "../SerialClass/SerialHandler.h"
 #endif
 
-class BSTPedals
+class BSTPedals_
 {
 public:
-    BSTPedals(uint8_t clutchPin,
+    BSTPedals_(uint8_t clutchPin,
               uint8_t gasPin,
               uint8_t brakeDoutPin,
               uint8_t brakeSckPin,
@@ -36,6 +36,7 @@ public:
           brake(brakeDoutPin, brakeSckPin, gas.getLastUsedEEPROMAddress()),
           Joystick(&Joystick) {
             serialHandler = SerialHandler(*this);
+            joySetup();
           }
 
     void Worker();
@@ -43,14 +44,14 @@ public:
     void joySetup();
 
     // Getters for the pointers to the pedals
-    Pedal *getClutch() { return &clutch; }
-    Pedal *getGas() { return &gas; }
-    BrakePedal *getBrake() { return &brake; }
+    Pedal_ *getClutch() { return &clutch; }
+    Pedal_ *getGas() { return &gas; }
+    BrakePedal_ *getBrake() { return &brake; }
 
 private:
     SerialHandler serialHandler;
     Joystick_ *Joystick;
-    Pedal clutch;
-    Pedal gas;
-    BrakePedal brake;
+    Pedal_ clutch;
+    Pedal_ gas;
+    BrakePedal_ brake;
 };

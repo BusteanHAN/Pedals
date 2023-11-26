@@ -13,12 +13,12 @@
 #include "EEPROMUtils.h"
 #endif
 
-class Pedal
+class Pedal_
 {
 public:
-    Pedal() {}
+    Pedal_() {}
 
-    Pedal(uint8_t pin, uint8_t eepromBaseAddress) : pin(pin), eepromBaseAddress(eepromBaseAddress)
+    Pedal_(uint8_t pin, uint8_t eepromBaseAddress) : pin(pin), eepromBaseAddress(eepromBaseAddress)
     {
         pinMode(pin, INPUT);
         loadFromEEPROM();

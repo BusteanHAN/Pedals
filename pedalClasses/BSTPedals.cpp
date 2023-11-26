@@ -1,6 +1,6 @@
 #include "BSTPedals.h"
 
-void BSTPedals::joySetup()
+void BSTPedals_::joySetup()
 {
     Joystick->setThrottleRange(0, 255);
     Joystick->setAcceleratorRange(0, 255);
@@ -31,7 +31,7 @@ void BSTPedals::joySetup()
     Joystick->sendState();
 }
 
-void BSTPedals::Worker()
+void BSTPedals_::Worker()
 {
     serialHandler.Worker();
     clutch.Worker();

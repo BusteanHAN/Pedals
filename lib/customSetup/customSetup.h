@@ -159,11 +159,11 @@ void serialHandler()
         break;
       case 'l':
         Serial.print("Lower brake limit: ");
-        Serial.println(readDoubleFromEEPROM(8));
+        Serial.println(readLongFromEEPROM(8));
         break;
       case 'h':
         Serial.print("Upper brake limit: ");
-        Serial.println(readDoubleFromEEPROM(12));
+        Serial.println(readLongFromEEPROM(12));
         break;
       default:
         break;

@@ -67,6 +67,16 @@ void serialHandler()
   temp.toCharArray(value, sizeof(value));
   // Serial.println(message.charAt(1));
   uint8_t addr = 0;
+
+  // waits for serial commands to be sent
+  // commands are:
+  // help - h - displays help
+  // reset - r - loads defaults
+  // set - c,g,b; l,h; value - sets the value of the pedal
+  // example: cl283 = clutch lower limit 283; gh1023 = gas higher limit 1023
+  // display - d; c,g,b; 0,1,l,h - displays the value of the pedal
+  // example: dc1 = display clutch true; dc0 = display clutch false
+
   switch (message.charAt(0))
   {
   case 'h':
@@ -77,17 +87,17 @@ void serialHandler()
     break;
   case 'c':
     addr = ('l' == message.charAt(1)) ? 0 : 2;
-    writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    writeUint16_tToEEPROM(addr, strtol(value, &pEnd, 10));
     Serial.println("Set!");
     break;
   case 'g':
     addr = ('l' == message.charAt(1)) ? 4 : 6;
-    writeIntIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    writeUint16_tToEEPROM(addr, strtol(value, &pEnd, 10));
     Serial.println("Set!");
     break;
   case 'b':
     addr = ('l' == message.charAt(1)) ? 8 : 12;
-    writeDoubleIntoEEPROM(addr, strtol(value, &pEnd, 10));
+    writeLongIntoEEPROM(addr, strtol(value, &pEnd, 10));
     Serial.println("Set!");
     break;
   case 'd':
@@ -105,11 +115,11 @@ void serialHandler()
         break;
       case 'l':
         Serial.print("Lower clutch limit: ");
-        Serial.println(readIntFromEEPROM(0));
+        Serial.println(readUint16_tFromEEPROM(0));
         break;
       case 'h':
         Serial.print("Upper clutch limit: ");
-        Serial.println(readIntFromEEPROM(2));
+        Serial.println(readUint16_tFromEEPROM(2));
         break;
       default:
         break;
@@ -127,11 +137,11 @@ void serialHandler()
         break;
       case 'l':
         Serial.print("Lower gas limit: ");
-        Serial.println(readIntFromEEPROM(4));
+        Serial.println(readUint16_tFromEEPROM(4));
         break;
       case 'h':
         Serial.print("Upper gas limit: ");
-        Serial.println(readIntFromEEPROM(6));
+        Serial.println(readUint16_tFromEEPROM(6));
         break;
       default:
         break;
@@ -161,6 +171,10 @@ void serialHandler()
       break;
     case 'a':
       pedalDisplay |= 0b00001000;
+      break;
+    case 'e':
+      Serial.print("EEPROM Settings: ");
+      Serial.println(EEPROM.read(16));
       break;
     default:
       Serial.println("Invalid input");

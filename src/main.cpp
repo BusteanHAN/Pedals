@@ -1,9 +1,32 @@
+#ifndef ARDUINO_H
+#define ARDUINO_H
 #include <Arduino.h>
+#endif
+
+#ifndef EEPROM_H
+#define EEPROM_H
 #include <EEPROM.h>
+#endif
+
+#ifndef JOYSTICK_H
+#define JOYSTICK_H
 #include "Joystick.h"
+#endif
+
+#ifndef HX711_H
+#define HX711_H
 #include "HX711.h"
+#endif
+
+#ifndef EEPROMUTILS_H
+#define EEPROMUTILS_H
 #include "EEPROMUtils.h"
+#endif
+
+#ifndef CUSTOMSETUP_H
+#define CUSTOMSETUP_H
 #include "customSetup.h"
+#endif
 
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,
                    JOYSTICK_TYPE_MULTI_AXIS, 0, 0,
@@ -25,11 +48,11 @@ void displayStuff();
 void setup() {
   if (checkEEPROMclear()) loadDefaults();
 
-  clutch[3] = 1; clutch[4] = readIntFromEEPROM(0); clutch[5] = readIntFromEEPROM(2);
-  gas[3] = 1; gas[4] = readIntFromEEPROM(4); gas[5] = readIntFromEEPROM(6);
+  clutch[3] = 1; clutch[4] = readUint16_tFromEEPROM(0); clutch[5] = readUint16_tFromEEPROM(2);
+  gas[3] = 1; gas[4] = readUint16_tFromEEPROM(4); gas[5] = readUint16_tFromEEPROM(6);
   brake[3] = 1; brake[4] = readDoubleFromEEPROM(8); brake[5] = readDoubleFromEEPROM(12);
 
-  Serial.begin(2000000);
+  Serial.begin(115200);
   Serial.setTimeout(5);
   Serial1.begin(9600);
   brakePedal.begin(A1, A0);
@@ -43,8 +66,8 @@ void loop()
   if (Serial.available())
   {
     serialHandler();
-    clutch[4] = readIntFromEEPROM(0); clutch[5] = readIntFromEEPROM(2);
-    gas[4] = readIntFromEEPROM(4); gas[5] = readIntFromEEPROM(6);
+    clutch[4] = readUint16_tFromEEPROM(0); clutch[5] = readUint16_tFromEEPROM(2);
+    gas[4] = readUint16_tFromEEPROM(4); gas[5] = readUint16_tFromEEPROM(6);
     brake[4] = readDoubleFromEEPROM(8); brake[5] = readDoubleFromEEPROM(12);
   }
   displayStuff();

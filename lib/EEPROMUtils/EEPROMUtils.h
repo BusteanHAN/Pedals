@@ -1,38 +1,38 @@
-void writeDoubleIntoEEPROM(int address, double number)
+void writeLongIntoEEPROM(const uint8_t address, const long number)
 { 
   union {
-    double d;
-    byte b[sizeof(double)];
+    long d;\
+    byte b[sizeof(long)];
   };
   d = number;
-  for (size_t i = 0; i < 4; i++) EEPROM.write(address + i, b[i]);
+  for (size_t i = 0; i < sizeof(long); i++) EEPROM.write(address + i, b[i]);
 }
 
-double readDoubleFromEEPROM(int address)
+long readLongFromEEPROM(const int address)
 {
   union {
-    double d;
-    byte b[sizeof(double)];
+    long l;
+    byte b[sizeof(long)];
   };
-  for (size_t i = 0; i < 4; i++) b[i] = EEPROM.read(address + i);
-  return d;
+  for (size_t i = 0; i < sizeof(long); i++) b[i] = EEPROM.read(address + i);
+  return l;
 }
 
-void writeIntIntoEEPROM(int address, int number)
+void writeUint16_tToEEPROM(const uint8_t address, const uint16_t number)
 { 
   union {
-    int num;
-    byte b[sizeof(int)];
+    uint16_t num;
+    byte b[sizeof(uint16_t)];
   };
   num = number;
   EEPROM.write(address, b[0]);
   EEPROM.write(address + 1, b[1]);
 }
 
-int readIntFromEEPROM(int address)
+uint16_t readUint16_tFromEEPROM(const uint16_t address)
 {
   union {
-    int num;
+    uint16_t num;
     byte b[sizeof(int)];
   };
   b[0] = EEPROM.read(address);
@@ -48,12 +48,12 @@ bool checkEEPROMclear() {
 }
 
 void loadDefaults() {
-  writeIntIntoEEPROM(0,296);
-  writeIntIntoEEPROM(2,400);
-  writeIntIntoEEPROM(4,876);
-  writeIntIntoEEPROM(6,682);
-  writeDoubleIntoEEPROM(8,46000);
-  writeDoubleIntoEEPROM(12,500000);
+  writeUint16_tToEEPROM(0,296);
+  writeUint16_tToEEPROM(2,400);
+  writeUint16_tToEEPROM(4,876);
+  writeUint16_tToEEPROM(6,682);
+  writeLongIntoEEPROM(8,46000);
+  writeLongIntoEEPROM(12,500000);
 }
 
 void clearEEPROM() {
